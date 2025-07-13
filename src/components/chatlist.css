@@ -1,0 +1,75 @@
+.chatlist {
+  padding: 20px;
+  width: 100%;
+}
+
+.chatlist-heading {
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.chatlist-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.chatlist-item {
+  display: flex;
+  align-items: center;
+  padding: 12px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background 0.2s;
+  position: relative;
+}
+
+.chatlist-item:hover {
+  background-color: #f0f0f0;
+}
+
+.icon {
+  font-size: 1.8rem;
+  margin-right: 12px;
+}
+
+.chat-info {
+  flex: 1;
+}
+
+.chat-name {
+  font-weight: 600;
+}
+
+.chat-status {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.chat-time {
+  margin-left: 6px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #0f88f2;
+  border-radius: 50%;
+  position: absolute;
+  right: 12px;
+}
+.unread-badge {
+  background-color: #28a745; /* Bootstrap green */
+  color: white;
+  border-radius: 12px;
+  padding: 0 8px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  margin-left: 8px;
+  vertical-align: middle;
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+  line-height: 1.5;
+}
