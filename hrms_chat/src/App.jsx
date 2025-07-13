@@ -1,22 +1,16 @@
-import Message from './components/message.jsx'
-import Chats from './components/chatlist.jsx'
-import './App.css'
+import React from 'react';
+import ChatWindow from './components/chatwindow';
+import './style/ChatPage.css';
 
 function App() {
-
-  return (
-    <>
-    <Message/>
-    <div className='chats'>
-      <Chats name="Monish" mess="Sent you a message" time="30min"/>
-      <Chats name="Avinash" mess="Liked your post" time="1hr"/>
-      <Chats name="Harshini" mess="Sent you a message" time="2hr"/>
-      <Chats name="Samuel" mess="Reacted to your story" time="2hr 30min"/>
-      <Chats name="Sharath" mess="Uploaded to thier story" time="hr"/>
-    </div>
-    
-    </>
-  )
+    return (
+        <div className="app-container">
+            <div className="sidebar"></div>
+            <div className="chat-list"></div>
+            <ChatWindow />
+        </div>
+    );
 }
 
-export default App
+export default App;
+
