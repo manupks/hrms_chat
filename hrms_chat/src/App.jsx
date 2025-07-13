@@ -1,33 +1,20 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import Message from './components/message.jsx'
+import Chats from './components/chatlist.jsx'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <Message/>
+    <div className='chats'>
+      <Chats name="Monish" mess="Sent you a message" time="30min"/>
+      <Chats name="Avinash" mess="Liked your post" time="1hr"/>
+      <Chats name="Harshini" mess="Sent you a message" time="2hr"/>
+      <Chats name="Samuel" mess="Reacted to your story" time="2hr 30min"/>
+      <Chats name="Sharath" mess="Uploaded to thier story" time="hr"/>
+    </div>
+    
     </>
   )
 }
