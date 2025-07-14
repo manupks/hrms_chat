@@ -1,5 +1,7 @@
 import React from 'react';
 import './sidebar.css';
+import logo from '../assets/logo.png';
+import maria from '../assets/maria.png';
 import {
   FaHome,
   FaCommentDots,
@@ -16,13 +18,13 @@ function Sidebar() {
     <div className="sidebar">
       {/* Logo & Brand */}
       <div className="logo-section">
-        <img src="/logo.png" alt="Logo" className="logo" />
+        <img src={logo} alt="Logo" className="logo" />
         <p className="brand-name">Human Resource Management System</p>
       </div>
 
       {/* User Info */}
       <div className="user-section">
-        <img src="/maria.jpg" alt="Profile" className="profile-pic" />
+        <img src={maria} alt="Profile" className="profile-pic" />
         <div className="user-details">
           <p className="user-name">Maria</p>
           <p className="user-role">HR Manager</p>

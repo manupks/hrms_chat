@@ -2,7 +2,7 @@ import React from 'react';
 import ChatWindow from './components/chatwindow';
 import './style/ChatPage.css';
 import ChatList from './components/chatlist.jsx'
-import Sidebar  from './components/sidebar.jsx';
+import Sidebar  from './components/Sidebar.jsx';
 function App() {
     return (
         <div className="app-container">
