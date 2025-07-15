@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import './ChatList.css';
 
 const chatData = [
@@ -10,11 +11,16 @@ const chatData = [
   { name: "Adam West", status: "Active", time: "today", unread: false },
   { name: "Philip J. Fry", status: "I feel like I was frozen for 1000...", time: "20h", unread: false },
   { name: "Cleveland Brown", status: "Active", time: "5h ago", unread: false },
-  { name: "Chris Griffin", status: "Active", time: "today", unread: false },
-//   { name: "Bonnie Swanson", status: "", time: "", unread: false }
+  { name: "Chris Griffin", status: "Active", time: "today", unread: false }
 ];
 
 function ChatList() {
+  const [searchTerm, setSearchTerm] = useState('');
+
+  const filteredChats = chatData.filter(chat =>
+    chat.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
   const unreadCount = chatData.filter(chat => chat.unread).length;
 
   return (
@@ -23,8 +29,17 @@ function ChatList() {
         Messages
         {unreadCount > 0 && <span className="unread-badge">{unreadCount}</span>}
       </h3>
+
+      <input
+        type="text"
+        placeholder="Search chats..."
+        value={searchTerm}
+        onChange={(e) => setSearchTerm(e.target.value)}
+        className="chat-search"
+      />
+
       <ul className="chatlist-items">
-        {chatData.map((chat, index) => (
+        {filteredChats.map((chat, index) => (
           <li className="chatlist-item" key={index}>
             <div className="icon">👤</div>
             <div className="chat-info">
