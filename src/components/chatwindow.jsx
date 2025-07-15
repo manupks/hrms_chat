@@ -120,6 +120,7 @@ const ChatWindow = () => {
                             <ThreeDotsVertical className="three-dots" onClick={toggleMenu} />
                             {showMenu && (
                                 <div className="dropdown-float">
+                                    <button className="dropdown-btn">Delete</button>
                                     <button className="dropdown-btn">Mute</button>
                                     <button className="dropdown-btn">Block</button>
                                     <button className="dropdown-btn">Report</button>
