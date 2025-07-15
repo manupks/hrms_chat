@@ -8,39 +8,38 @@ import '../style/ChatPage.css';
 
 const ChatWindow = () => {
     const [messages, setMessages] = useState([
-    {
-        id: 1,
-        text: "Hey Eric, have you collaborated with Fred yet?\nNot yet    Yes",
-        sender: "other",
-        specialReply: true,
-        time: "10:30 AM",
-    },
-    {
-        id: 2,
-        text: "So... question. How long has server been unconscious?",
-        sender: "other",
-        time: "10:32 AM",
-    },
-    {
-        id: 3,
-        text: "Oh my god, Chris. The server is not working and it is showing some problem indication...",
-        sender: "me",
-        time: "10:34 AM",
-    },
-    {
-        id: 4,
-        text: "Y fear when Chris is here... I’ve taught you well. You have the right instincts...",
-        sender: "other",
-        time: "10:35 AM",
-    },
-]);
-
+        {
+            id: 1,
+            text: "Hey Eric, have you collaborated with Fred yet?\nNot yet    Yes",
+            sender: "other",
+            specialReply: true,
+            time: "10:30 AM",
+        },
+        {
+            id: 2,
+            text: "So... question. How long has server been unconscious?",
+            sender: "other",
+            time: "10:32 AM",
+        },
+        {
+            id: 3,
+            text: "Oh my god, Chris. The server is not working and it is showing some problem indication...",
+            sender: "me",
+            time: "10:34 AM",
+        },
+        {
+            id: 4,
+            text: "Y fear when Chris is here... I’ve taught you well. You have the right instincts...",
+            sender: "other",
+            time: "10:35 AM",
+        },
+    ]);
 
     const [showMenu, setShowMenu] = useState(false);
     const [showProfile, setShowProfile] = useState(false);
     const [contextMenu, setContextMenu] = useState(null);
-
     const menuRef = useRef(null);
+    const chatBodyRef = useRef(null);
 
     const toggleMenu = () => setShowMenu(!showMenu);
 
@@ -57,9 +56,30 @@ const ChatWindow = () => {
         };
     }, []);
 
+    // Auto-scroll to bottom when messages change
+    useEffect(() => {
+        if (chatBodyRef.current) {
+            chatBodyRef.current.scrollTop = chatBodyRef.current.scrollHeight;
+        }
+    }, [messages]);
+
     const handleSend = (newMessage) => {
         if (!newMessage.trim()) return;
-        setMessages([...messages, { id: Date.now(), text: newMessage, sender: 'me' }]);
+
+        const now = new Date();
+        const formattedTime = now.toLocaleTimeString([], {
+            hour: '2-digit',
+            minute: '2-digit',
+        });
+
+        const newMsg = {
+            id: Date.now(),
+            text: newMessage,
+            sender: 'me',
+            time: formattedTime,
+        };
+
+        setMessages([...messages, newMsg]);
     };
 
     const handleContextMenu = (event, sender) => {
@@ -100,7 +120,6 @@ const ChatWindow = () => {
                             <ThreeDotsVertical className="three-dots" onClick={toggleMenu} />
                             {showMenu && (
                                 <div className="dropdown-float">
-                                    <button className="dropdown-btn">Delete</button>
                                     <button className="dropdown-btn">Mute</button>
                                     <button className="dropdown-btn">Block</button>
                                     <button className="dropdown-btn">Report</button>
@@ -109,18 +128,17 @@ const ChatWindow = () => {
                         </div>
                     </div>
 
-                    <div className="chat-body">
-                        {messages.map(msg => (
+                    <div className="chat-body" ref={chatBodyRef}>
+                        {messages.map((msg) => (
                             <Message
-                            key={msg.id}
-                            text={msg.text}
-                            sender={msg.sender}
-                            specialReply={msg.specialReply}
-                            time={msg.time}
-                            onContextMenu={handleContextMenu}
-                                />
+                                key={msg.id}
+                                text={msg.text}
+                                sender={msg.sender}
+                                specialReply={msg.specialReply}
+                                time={msg.time}
+                                onContextMenu={handleContextMenu}
+                            />
                         ))}
-
                     </div>
 
                     <InputBox onSend={handleSend} />
