@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './ChatList.css';
 
 const chatData = [
-    { name: "Lois Griffin", status: "Sent you a message", time: "34m", unread: true, type: "single", favourite: true },
+    { name: "Meg Griffin", status: "Sent you a message", time: "34m", unread: true, type: "single", favourite: true },
     { name: "The Boyz", status: "joe68: sent a message", time: "34m", unread: true, type: "group", favourite: false },
     { name: "Stewie Griffin", status: "Sent you a message", time: "17h", unread: true, type: "single", favourite: true },
     { name: "Joe Swanson", status: "Sent you a message", time: "20h", unread: false, type: "single", favourite: false },
@@ -14,7 +14,7 @@ const chatData = [
     { name: "Chris Griffin", status: "Active", time: "today", unread: false, type: "single", favourite: true }
 ];
 
-function ChatList() {
+function ChatList({ onSelectChat, selectedChat }) {
     const [searchTerm, setSearchTerm] = useState('');
     const [filter, setFilter] = useState('all');
 
@@ -39,7 +39,7 @@ function ChatList() {
                     Messages
                     {unreadCount > 0 && <span className="unread-badge">{unreadCount}</span>}
                 </h3>
-                
+
                 <select className="chat-filter" value={filter} onChange={(e) => setFilter(e.target.value)}>
                     <option value="all"> 🔽 All </option>
                     <option value="groups">👥 Groups</option>
@@ -58,32 +58,31 @@ function ChatList() {
             />
 
             <div className="chatlist-scroll">
-            <ul className="chatlist-items">
-                {filteredChats.map((chat, index) => (
-                <li className={`chatlist-item ${chat.favourite ? 'favourite' : ''}`} key={index}>
-                    <div className="icon">👤</div>
-                    <div className="chat-info">
-                    <div className="chat-name">
-                        {chat.name}
-                        {chat.favourite && <span className="favourite-star">★</span>}
-                    </div>
-                    <div className="chat-status">
-                        {chat.status}
-                        {chat.time && <span className="chat-time"> · {chat.time}</span>}
-                    </div>
-                    </div>
-                    {/* {chat.favourite && <div className="star">⭐</div>} */}
-                    {chat.unread && <div className="dot"></div>}
-                </li>
-                ))}
-            </ul>
+                <ul className="chatlist-items">
+                    {filteredChats.map((chat, index) => (
+                        <li
+                            className={`chatlist-item ${chat.name === selectedChat ? 'selected' : ''} ${chat.favourite ? 'favourite' : ''}`}
+                            key={index}
+                            onClick={() => onSelectChat(chat.name)}
+                        >
+                            <div className="icon">👤</div>
+                            <div className="chat-info">
+                                <div className="chat-name">
+                                    {chat.name}
+                                    {chat.favourite && <span className="favourite-star">★</span>}
+                                </div>
+                                <div className="chat-status">
+                                    {chat.status}
+                                    {chat.time && <span className="chat-time"> · {chat.time}</span>}
+                                </div>
+                            </div>
+                            {chat.unread && <div className="dot"></div>}
+                        </li>
+                    ))}
+                </ul>
             </div>
-
-
         </div>
-        
     );
 }
 
 export default ChatList;
-

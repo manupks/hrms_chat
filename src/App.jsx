@@ -1,18 +1,21 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatWindow from './components/chatwindow';
+import ChatList from './components/chatlist';
+import Sidebar from './components/Sidebar';
 import './style/ChatPage.css';
-import ChatList from './components/chatlist.jsx'
-import Sidebar  from './components/Sidebar.jsx';
+
 function App() {
+    const [selectedChat, setSelectedChat] = useState('Meg Griffin');
+
     return (
         <div className="app-container">
             <div className="sidebar" style={{ display: 'flex' }}>
                 <Sidebar />
             </div>
             <div className="chat-list">
-                <ChatList/>
+                <ChatList selectedChat={selectedChat} onSelectChat={setSelectedChat} />
             </div>
-            <ChatWindow />
+            <ChatWindow selectedChat={selectedChat} />
         </div>
     );
 }

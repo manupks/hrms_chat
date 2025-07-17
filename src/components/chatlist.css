@@ -182,3 +182,17 @@
   background-color: hsl(0, 0%, 90%);
   border-radius: 5px;
 }
+
+.chatlist-item.selected {
+    background-color: #e6f0ff; /* Light blue background */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    border-radius: 8px;
+}
+
+.chatlist-item.selected .icon {
+    transform: scale(1.05);
+}
+
+.chatlist-item.selected .chat-info {
+    font-weight: 500;
+}
