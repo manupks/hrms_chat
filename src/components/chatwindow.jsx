@@ -3,7 +3,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { ThreeDotsVertical } from 'react-bootstrap-icons';
 import Message from './message';
 import InputBox from './inputbox';
-import '../style/ChatPage.css';
+import './ChatPage';
 
 const userProfiles = {
     "Meg Griffin": {
