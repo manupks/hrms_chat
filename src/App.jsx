@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
-import ChatWindow from './components/chatwindow';
-import ChatList from './components/chatlist';
-import Sidebar from './components/Sidebar';
-import './style/ChatPage.css';
+import React from 'react';
+import Chat from './chat.jsx';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './components/chat.css'; // Your existing Chat CSS
+import './app.css';  // Optional if you want extra global styles
 
 function App() {
-    const [selectedChat, setSelectedChat] = useState('Meg Griffin');
-
     return (
-        <div className="app-container">
-            <div className="sidebar" style={{ display: 'flex' }}>
-                <Sidebar />
-            </div>
-            <div className="chat-list">
-                <ChatList selectedChat={selectedChat} onSelectChat={setSelectedChat} />
-            </div>
-            <ChatWindow selectedChat={selectedChat} />
-        </div>
+        <Chat />
     );
 }
 
